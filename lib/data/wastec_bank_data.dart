@@ -1,0 +1,98 @@
+import 'package:flutter/material.dart';
+
+class WastecBankData {
+  static const List<Map<String, dynamic>> trendingRates = [
+    {'name': 'Paper', 'price': '₹6/kg', 'icon': Icons.description},
+    {'name': 'Plastic', 'price': '₹2/kg', 'icon': Icons.recycling},
+    {'name': 'Metal', 'price': '₹17/kg', 'icon': Icons.hardware},
+    {'name': 'E-Waste', 'price': '₹10/kg', 'icon': Icons.devices},
+    {'name': 'Newspaper', 'price': '₹7/kg', 'icon': Icons.newspaper},
+    {'name': 'Hard Plastic', 'price': '₹2/kg', 'icon': Icons.category},
+    {'name': 'AC (2 Ton)', 'price': '₹1000/pcs', 'icon': Icons.ac_unit},
+    {'name': 'Iron', 'price': '₹17/kg', 'icon': Icons.build},
+  ];
+
+  static final List<Map<String, dynamic>> orders = [
+    {
+      'id': '#WSTC1234',
+      'status': 'In Transit',
+      'eta': 'Arrives by 04:30 PM',
+      'lastUpdate': 'Updated 12 mins ago',
+      'date': '10 Nov 2025',
+      'payment': '₹450 • COD',
+      'weight': '19.4 kg total',
+      'notes': 'Mixed plastic & corrugated cardboard',
+      'pickup': 'Asha Nagar Ward 12, Pune',
+      'drop': 'Eco Recovery Hub, Sector 4',
+      'agent': 'Rahul Sharma',
+      'vehicle': 'Mini Truck • MH12 AB 4589',
+      'contact': '+91 98765 43210',
+      'icon': Icons.local_shipping,
+      'color': const Color(0xFFFF8A3D),
+      'stage': 3,
+      'timeline': const <String?>[
+        '09:10 AM',
+        '10:45 AM',
+        '12:30 PM',
+        '02:05 PM',
+        null,
+        null,
+      ],
+    },
+    {
+      'id': '#WSTC1235',
+      'status': 'Ready for Recycling',
+      'eta': 'Completed 05:45 PM',
+      'lastUpdate': 'Closed 1 day ago',
+      'date': '08 Nov 2025',
+      'payment': '₹320 • Wallet',
+      'weight': '11.2 kg total',
+      'notes': 'Aluminium cans sorted at pickup',
+      'pickup': 'Nav Jeevan Society, Pune',
+      'drop': 'Green Loop Recycler, Chakan',
+      'agent': 'Wastec Fleet 07',
+      'vehicle': 'EV Van • MH12 CL 9087',
+      'contact': '+91 91345 77654',
+      'icon': Icons.verified,
+      'color': const Color(0xFF009688),
+      'stage': 5,
+      'timeline': const <String?>[
+        '08:20 AM',
+        '09:40 AM',
+        '11:10 AM',
+        '01:55 PM',
+        '04:00 PM',
+        '05:45 PM',
+      ],
+    },
+    {
+      'id': '#WSTC1236',
+      'status': 'Picked Up',
+      'eta': 'Sorting starts by 01:00 PM',
+      'lastUpdate': 'Driver departed 25 mins ago',
+      'date': '11 Nov 2025',
+      'payment': '₹580 • Online',
+      'weight': '23.0 kg total',
+      'notes': 'Glass items packed separately',
+      'pickup': 'Skyline Residency, Baner',
+      'drop': 'Wastec Material Hub, Wakad',
+      'agent': 'Priya Kulkarni',
+      'vehicle': 'Loader Bike • MH14 XY 3344',
+      'contact': '+91 96543 22109',
+      'icon': Icons.local_shipping,
+      'color': const Color(0xFFF57C00),
+      'stage': 1,
+      'timeline': const <String?>[
+        '09:35 AM',
+        '11:00 AM',
+        null,
+        null,
+        null,
+        null,
+      ],
+    },
+  ];
+
+  static const walletBalance = '₹7,450.00';
+  static const walletMonthlyEarning = '₹1,200 earned this month';
+}
