@@ -9,7 +9,7 @@ class TrendingRatesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final rates = WastecBankData.trendingRates;
+    const rates = WastecBankData.trendingRates;
 
     return Scaffold(
       backgroundColor: Colors.grey[50],

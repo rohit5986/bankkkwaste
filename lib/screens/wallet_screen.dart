@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../config/theme.dart';
-import '../widgets/wallet_tab.dart';
 import '../widgets/profile_wallet_actions.dart';
+import '../widgets/wallet_tab.dart';
 
 class WalletScreen extends StatelessWidget {
   const WalletScreen({super.key});

@@ -4,7 +4,6 @@ import '../config/theme.dart';
 import '../widgets/profile_wallet_actions.dart';
 import '../widgets/wallet_tab.dart';
 import 'eco_friendly_page.dart';
-import 'sell_scrap_screen.dart';
 import 'wastec_bank_screen.dart';
 // feature screens removed from Home; kept in Wastec Bank screen
 
@@ -32,9 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
       case 0:
         return const _HomeTab();
       case 1:
-        return const SellScrapScreen();
+        return const EcoFriendlyPage();
       case 2:
-        return const _DealersTab();
+        return const WastecBankScreen();
       case 3:
         return const WalletTab();
       default:
@@ -43,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   PreferredSizeWidget _buildAppBar() {
-    final titles = ['Wastec Bank', 'Sell Scrap', 'Dealers', 'Wallet'];
+    final titles = ['Wastec Bank', 'Be Eco-Friendly', 'Waste Bank', 'Wallet'];
     return AppBar(
       elevation: 0,
       backgroundColor: WastecColors.primaryGreen,
@@ -70,9 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
         items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
         BottomNavigationBarItem(
-          icon: Icon(Icons.sell_outlined), label: 'Sell Scrap'),
+          icon: Icon(Icons.eco), label: 'Be Eco-Friendly'),
         BottomNavigationBarItem(
-          icon: Icon(Icons.store_mall_directory_outlined), label: 'Dealers'),
+          icon: Icon(Icons.recycling), label: 'Waste Bank'),
         BottomNavigationBarItem(
           icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
         ],
@@ -204,35 +203,6 @@ class _HeroBanner extends StatelessWidget {
       ),
     );
 
-}
-
-/// Dealers Tab Placeholder
-class _DealersTab extends StatelessWidget {
-  const _DealersTab();
-
-  @override
-  Widget build(BuildContext context) => Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.store_mall_directory, size: 80, color: Colors.grey[400]),
-          const SizedBox(height: 16),
-          Text(
-            'Dealers',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey[700],
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Coming Soon',
-            style: TextStyle(fontSize: 16, color: Colors.grey[500]),
-          ),
-        ],
-      ),
-    );
 }
 
 // Top feature cards were removed from Home — moved to Wastec Bank screen.

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../config/theme.dart';
 
 class WastecOrderCard extends StatelessWidget {
-  const WastecOrderCard({super.key, required this.order});
+  const WastecOrderCard({required this.order, super.key});
 
   final Map<String, dynamic> order;
 
@@ -137,7 +137,7 @@ class WastecOrderCard extends StatelessWidget {
 }
 
 class WastecOrderTimeline extends StatelessWidget {
-  const WastecOrderTimeline({super.key, required this.currentStage, required this.timeline});
+  const WastecOrderTimeline({required this.currentStage, required this.timeline, super.key});
 
   final int currentStage;
   final List<String?> timeline;
@@ -190,7 +190,7 @@ class WastecOrderTimeline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int activeStage = currentStage < 0
+    final activeStage = currentStage < 0
         ? 0
         : currentStage >= _stages.length
             ? _stages.length - 1
@@ -338,8 +338,7 @@ class _WastecOrderStage {
   const _WastecOrderStage({
     required this.label,
     required this.description,
-    this.location,
-    required this.icon,
+    required this.icon, this.location,
   });
 
   final String label;
@@ -350,13 +349,7 @@ class _WastecOrderStage {
 
 class WastecTimelineNode extends StatelessWidget {
   const WastecTimelineNode({
-    super.key,
-    required this.isFirst,
-    required this.isLast,
-    required this.upperActive,
-    required this.lowerActive,
-    required this.isCompleted,
-    required this.isCurrent,
+    required this.isFirst, required this.isLast, required this.upperActive, required this.lowerActive, required this.isCompleted, required this.isCurrent, super.key,
   });
 
   final bool isFirst;
@@ -369,11 +362,11 @@ class WastecTimelineNode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double lineWidth = 2;
-    final Color activeColor = WastecColors.primaryGreen;
-    final Color inactiveColor = activeColor.withOpacity(0.2);
+    const activeColor = WastecColors.primaryGreen;
+    final inactiveColor = activeColor.withOpacity(0.2);
 
-    final Color dotFill = isCompleted ? activeColor : Colors.white;
-    final Color dotBorder = isCompleted ? activeColor : activeColor.withOpacity(0.5);
+    final dotFill = isCompleted ? activeColor : Colors.white;
+    final dotBorder = isCompleted ? activeColor : activeColor.withOpacity(0.5);
 
     return SizedBox(
       width: 28,
@@ -704,7 +697,7 @@ class _WastecDriverCard extends StatelessWidget {
 }
 
 class WastecDeliveryProgress extends StatelessWidget {
-  const WastecDeliveryProgress({super.key, required this.stage});
+  const WastecDeliveryProgress({required this.stage, super.key});
 
   final int stage;
 

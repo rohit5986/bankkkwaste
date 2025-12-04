@@ -2,12 +2,8 @@
 
 import '../config/theme.dart';
 import '../data/wastec_bank_data.dart';
-import '../widgets/profile_wallet_actions.dart';
 import '../widgets/wastec_bank_category_bar.dart';
 import 'eco_friendly_page.dart';
-import 'trending_rates_screen.dart';
-import 'track_order_screen.dart';
-import 'wallet_screen.dart';
 
 class WastecBankScreen extends StatelessWidget {
   const WastecBankScreen({Key? key}) : super(key: key);
@@ -22,26 +18,7 @@ class WastecBankScreen extends StatelessWidget {
     final bottomSafe = MediaQuery.of(context).padding.bottom;
     final bodyBottomPadding = bottomSafe + kBottomNavigationBarHeight + 12.0;
 
-    return Scaffold(
-      backgroundColor: Colors.grey[50],
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: WastecColors.primaryGreen,
-        title: const Text(
-          'Wastec Bank',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.pop(context),
-        ),
-        actions: const [ProfileWalletActions()],
-      ),
-      body: SingleChildScrollView(
+    return SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.fromLTRB(16, 12, 16, bodyBottomPadding),
           child: Column(
@@ -88,120 +65,7 @@ class WastecBankScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.06),
-                  blurRadius: 10,
-                  offset: const Offset(0, 6),
-                ),
-              ],
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const TrendingRatesScreen()),
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.trending_up, color: WastecColors.primaryGreen),
-                            const SizedBox(width: 8),
-                            Flexible(
-                              child: Text(
-                                'Trending Rates',
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const TrackOrderScreen()),
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.local_shipping_outlined, color: WastecColors.primaryGreen),
-                            const SizedBox(width: 8),
-                            Flexible(
-                              child: Text(
-                                'Track Order',
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const WalletScreen()),
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.account_balance_wallet_outlined, color: WastecColors.primaryGreen),
-                            const SizedBox(width: 8),
-                            Flexible(
-                              child: Text(
-                                'Wallet',
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+      );
   }
 
   Widget _buildSectionTitle(String title) => Text(
@@ -407,7 +271,7 @@ class WastecBankScreen extends StatelessWidget {
         'vehicle': 'Loader Bike • MH14 XY 3344',
         'contact': '+91 96543 22109',
         'icon': Icons.local_shipping,
-        'color': Colors.amber[800]!,
+        'color': Colors.amber[800],
         'stage': 1,
         'timeline': const <String?>[
           '09:35 AM',
@@ -607,7 +471,7 @@ class _OrderTimeline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int activeStage = currentStage < 0
+    final activeStage = currentStage < 0
         ? 0
         : currentStage >= _stages.length
             ? _stages.length - 1
@@ -755,8 +619,7 @@ class _OrderStage {
   const _OrderStage({
     required this.label,
     required this.description,
-    this.location,
-    required this.icon,
+    required this.icon, this.location,
   });
 
   final String label;
@@ -785,11 +648,11 @@ class _TimelineNode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const double lineWidth = 2;
-    final Color activeColor = WastecColors.primaryGreen;
-    final Color inactiveColor = activeColor.withOpacity(0.2);
+    const activeColor = WastecColors.primaryGreen;
+    final inactiveColor = activeColor.withOpacity(0.2);
 
-    final Color dotFill = isCompleted ? activeColor : Colors.white;
-    final Color dotBorder = isCompleted ? activeColor : activeColor.withOpacity(0.5);
+    final dotFill = isCompleted ? activeColor : Colors.white;
+    final dotBorder = isCompleted ? activeColor : activeColor.withOpacity(0.5);
 
     return SizedBox(
       width: 28,

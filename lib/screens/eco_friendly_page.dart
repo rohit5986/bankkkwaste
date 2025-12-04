@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../config/theme.dart';
-import '../widgets/profile_wallet_actions.dart';
 import 'wastec_bank_screen.dart';
 
 /// Displays sustainable living ideas and eco product listings.
@@ -95,16 +94,7 @@ class EcoFriendlyPage extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text('Be Eco-Friendly'),
-        backgroundColor: Colors.green,
-        foregroundColor: Colors.white,
-        elevation: 0,
-        actions: const [ProfileWalletActions()],
-      ),
-      body: SafeArea(
+  Widget build(BuildContext context) => SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -145,8 +135,7 @@ class EcoFriendlyPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
 
   Widget _buildSustainableTips(BuildContext context) => SizedBox(
       height: 200,

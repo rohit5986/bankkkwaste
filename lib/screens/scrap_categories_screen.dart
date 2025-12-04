@@ -67,7 +67,7 @@ class ScrapCategoryInfo {
 }
 
 class ScrapCategoryCard extends StatelessWidget {
-  const ScrapCategoryCard({super.key, required this.info});
+  const ScrapCategoryCard({required this.info, super.key});
 
   final ScrapCategoryInfo info;
 
