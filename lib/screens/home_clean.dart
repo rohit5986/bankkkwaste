@@ -29,7 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _getBody() {
     switch (_currentIndex) {
       case 0:
-        return const _HomeTab();
+        return _HomeTab(
+          onNavigateToEcoFriendly: () => setState(() => _currentIndex = 1),
+          onNavigateToWasteBank: () => setState(() => _currentIndex = 2),
+        );
       case 1:
         return const EcoFriendlyPage();
       case 2:
@@ -37,7 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
       case 3:
         return const WalletTab();
       default:
-        return const _HomeTab();
+        return _HomeTab(
+          onNavigateToEcoFriendly: () => setState(() => _currentIndex = 1),
+          onNavigateToWasteBank: () => setState(() => _currentIndex = 2),
+        );
     }
   }
 
@@ -80,7 +86,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
 /// Home Tab Content
 class _HomeTab extends StatelessWidget {
-  const _HomeTab();
+  const _HomeTab({
+    this.onNavigateToEcoFriendly,
+    this.onNavigateToWasteBank,
+  });
+
+  final VoidCallback? onNavigateToEcoFriendly;
+  final VoidCallback? onNavigateToWasteBank;
 
   @override
   Widget build(BuildContext context) => SafeArea(
@@ -93,14 +105,14 @@ class _HomeTab extends StatelessWidget {
               icon: Icons.eco,
               title: 'Be Eco-Friendly',
               subtitle: 'Turn your waste into wealth while saving the planet',
-              destinationBuilder: (context) => const EcoFriendlyPage(),
+              onTap: onNavigateToEcoFriendly,
             ),
             const SizedBox(height: 16),
             _HeroBanner(
               icon: Icons.recycling,
               title: 'Waste Bank',
               subtitle: 'Zero Garbage to Landfill',
-              destinationBuilder: (context) => const WastecBankScreen(),
+              onTap: onNavigateToWasteBank,
             ),
           ],
         ),
@@ -113,26 +125,20 @@ class _HeroBanner extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.subtitle,
-    required this.destinationBuilder,
+    this.onTap,
   });
 
   final IconData icon;
   final String title;
   final String subtitle;
-  final WidgetBuilder destinationBuilder;
-
-  void _handleNavigation(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: destinationBuilder),
-    );
-  }
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) => Material(
       color: Colors.transparent,
       borderRadius: BorderRadius.circular(20),
       child: InkWell(
-        onTap: () => _handleNavigation(context),
+        onTap: onTap,
         borderRadius: BorderRadius.circular(20),
         child: Ink(
           width: double.infinity,
@@ -177,7 +183,7 @@ class _HeroBanner extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () => _handleNavigation(context),
+                onPressed: onTap,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   foregroundColor: WastecColors.primaryGreen,
