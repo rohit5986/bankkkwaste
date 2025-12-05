@@ -3,10 +3,16 @@ import 'package:flutter/material.dart';
 import '../config/theme.dart';
 import '../data/wastec_bank_data.dart';
 import '../widgets/profile_wallet_actions.dart';
+import '../widgets/wallet_tab.dart';
 import '../widgets/wastec_order_card.dart';
+import 'home_clean.dart';
+
+enum TrackOrderSource { wasteBank, ecoFriendly }
 
 class TrackOrderScreen extends StatelessWidget {
-  const TrackOrderScreen({super.key});
+  const TrackOrderScreen({super.key, this.source = TrackOrderSource.wasteBank});
+
+  final TrackOrderSource source;
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +81,75 @@ class TrackOrderScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: _buildBottomNavBar(context),
     );
+  }
+
+  Widget _buildBottomNavBar(BuildContext context) {
+    if (source == TrackOrderSource.wasteBank) {
+      // Show Waste Bank navbar: Home, Waste Bank, Track Order, Wallet
+      return BottomNavigationBar(
+        currentIndex: 2, // Track Order is at index 2
+        selectedItemColor: WastecColors.primaryGreen,
+        unselectedItemColor: WastecColors.mediumGray,
+        onTap: (i) {
+          if (i == 0) {
+            // Navigate to Home Screen
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => const HomeScreen()),
+            );
+          } else if (i == 1) {
+            // Navigate back to Waste Bank
+            Navigator.of(context).pop();
+          } else if (i == 2) {
+            // Stay on Track Order
+          } else if (i == 3) {
+            // Navigate to Wallet Screen
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => const Scaffold(
+                body: WalletTab(),
+              )),
+            );
+          }
+        },
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.recycling), label: 'Waste Bank'),
+          BottomNavigationBarItem(icon: Icon(Icons.local_shipping_outlined), label: 'Track Order'),
+          BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
+        ],
+      );
+    } else {
+      // Show Eco-Friendly navbar: Home, Eco-Friendly, Track Order, Wallet
+      return BottomNavigationBar(
+        currentIndex: 2, // Track Order is at index 2
+        selectedItemColor: WastecColors.primaryGreen,
+        unselectedItemColor: WastecColors.mediumGray,
+        onTap: (i) {
+          if (i == 0) {
+            // Navigate to Home Screen
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => const HomeScreen()),
+            );
+          } else if (i == 1) {
+            // Navigate back to Eco-Friendly
+            Navigator.of(context).pop();
+          } else if (i == 2) {
+            // Stay on Track Order
+          } else if (i == 3) {
+            // Navigate to Wallet - pop back to Eco-Friendly first
+            Navigator.of(context).pop();
+          }
+        },
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.eco), label: 'Eco-Friendly'),
+          BottomNavigationBarItem(icon: Icon(Icons.local_shipping_outlined), label: 'Track Order'),
+          BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
+        ],
+      );
+    }
   }
 }

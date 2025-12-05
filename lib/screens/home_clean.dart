@@ -5,6 +5,7 @@ import '../widgets/profile_wallet_actions.dart';
 import '../widgets/wallet_tab.dart';
 import 'eco_friendly_page.dart';
 import 'wastec_bank_screen.dart';
+import 'track_order_screen.dart';
 // feature screens removed from Home; kept in Wastec Bank screen
 
 /// Home screen with bottom navigation
@@ -64,7 +65,62 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildBottomNavigationBar() => BottomNavigationBar(
+  Widget _buildBottomNavigationBar() {
+    // When viewing Eco-Friendly (index 1), show a custom navbar with: Home, Eco-Friendly, Track Order, Wallet
+    if (_currentIndex == 1) {
+      return BottomNavigationBar(
+        currentIndex: 1, // Eco-Friendly is at index 1 in this contextual bar
+        selectedItemColor: WastecColors.primaryGreen,
+        unselectedItemColor: WastecColors.mediumGray,
+        onTap: (i) {
+          if (i == 0) {
+            setState(() => _currentIndex = 0); // Home
+          } else if (i == 1) {
+            setState(() => _currentIndex = 1); // Eco-Friendly (stays on this tab)
+          } else if (i == 2) {
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TrackOrderScreen(source: TrackOrderSource.ecoFriendly)));
+          } else if (i == 3) {
+            setState(() => _currentIndex = 3); // Wallet
+          }
+        },
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.eco), label: 'Eco-Friendly'),
+          BottomNavigationBarItem(icon: Icon(Icons.local_shipping_outlined), label: 'Track Order'),
+          BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
+        ],
+      );
+    }
+
+    // When viewing Waste Bank (index 2), show a custom navbar with: Home, Waste Bank, Track Order, Wallet
+    if (_currentIndex == 2) {
+      return BottomNavigationBar(
+        currentIndex: 1, // Waste Bank is at index 1 in this contextual bar
+        selectedItemColor: WastecColors.primaryGreen,
+        unselectedItemColor: WastecColors.mediumGray,
+        onTap: (i) {
+          if (i == 0) {
+            setState(() => _currentIndex = 0); // Home
+          } else if (i == 1) {
+            setState(() => _currentIndex = 2); // Waste Bank (stays on this tab)
+          } else if (i == 2) {
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TrackOrderScreen(source: TrackOrderSource.wasteBank)));
+          } else if (i == 3) {
+            setState(() => _currentIndex = 3); // Wallet
+          }
+        },
+        type: BottomNavigationBarType.fixed,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.recycling), label: 'Waste Bank'),
+          BottomNavigationBarItem(icon: Icon(Icons.local_shipping_outlined), label: 'Track Order'),
+          BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
+        ],
+      );
+    }
+
+    return BottomNavigationBar(
       currentIndex: _currentIndex,
       selectedItemColor: WastecColors.primaryGreen,
       unselectedItemColor: WastecColors.mediumGray,
@@ -72,16 +128,14 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() => _currentIndex = i);
       },
       type: BottomNavigationBarType.fixed,
-        items: const [
+      items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.eco), label: 'Be Eco-Friendly'),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.recycling), label: 'Waste Bank'),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
-        ],
+        BottomNavigationBarItem(icon: Icon(Icons.eco), label: 'Be Eco-Friendly'),
+        BottomNavigationBarItem(icon: Icon(Icons.recycling), label: 'Waste Bank'),
+        BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
+      ],
     );
+  }
 }
 
 /// Home Tab Content
