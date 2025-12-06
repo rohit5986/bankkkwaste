@@ -5,7 +5,9 @@ import '../data/wastec_bank_data.dart';
 import 'eco_friendly_page.dart';
 
 class WastecBankScreen extends StatelessWidget {
-  const WastecBankScreen({Key? key}) : super(key: key);
+  const WastecBankScreen({Key? key, this.onNavigateToEcoFriendly}) : super(key: key);
+
+  final VoidCallback? onNavigateToEcoFriendly;
 
   @override
   Widget build(BuildContext context) {
@@ -19,20 +21,13 @@ class WastecBankScreen extends StatelessWidget {
 
     return SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.fromLTRB(16, 12, 16, bodyBottomPadding),
+          padding: EdgeInsets.fromLTRB(16, 16, 16, bodyBottomPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 18),
               _QuickAccessRow(
                 current: _QuickNavTarget.wasteBank,
-                onNavigateToEco: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => const EcoFriendlyPage(),
-                    ),
-                  );
-                },
+                onNavigateToEco: onNavigateToEcoFriendly ?? () {},
               ),
               const SizedBox(height: 20),
               // Section A: Trending Rates

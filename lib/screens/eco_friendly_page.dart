@@ -5,7 +5,9 @@ import 'wastec_bank_screen.dart';
 
 /// Displays sustainable living ideas and eco product listings.
 class EcoFriendlyPage extends StatelessWidget {
-  const EcoFriendlyPage({super.key});
+  const EcoFriendlyPage({super.key, this.onNavigateToWasteBank});
+
+  final VoidCallback? onNavigateToWasteBank;
 
   static final List<_EcoTip> _ecoTips = [
     const _EcoTip(
@@ -102,13 +104,7 @@ class EcoFriendlyPage extends StatelessWidget {
             children: [
               _QuickAccessRow(
                 current: _QuickNavTarget.ecoFriendly,
-                onNavigateToWaste: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (_) => const WastecBankScreen(),
-                    ),
-                  );
-                },
+                onNavigateToWaste: onNavigateToWasteBank ?? () {},
               ),
               const SizedBox(height: 20),
               const Text(

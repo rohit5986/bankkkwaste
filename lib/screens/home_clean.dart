@@ -35,9 +35,13 @@ class _HomeScreenState extends State<HomeScreen> {
           onNavigateToWasteBank: () => setState(() => _currentIndex = 2),
         );
       case 1:
-        return const EcoFriendlyPage();
+        return EcoFriendlyPage(
+          onNavigateToWasteBank: () => setState(() => _currentIndex = 2),
+        );
       case 2:
-        return const WastecBankScreen();
+        return WastecBankScreen(
+          onNavigateToEcoFriendly: () => setState(() => _currentIndex = 1),
+        );
       case 3:
         return const WalletTab();
       default:
