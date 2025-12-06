@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../config/theme.dart';
 import '../widgets/profile_wallet_actions.dart';
 import '../widgets/wallet_tab.dart';
+import '../widgets/location_header.dart';
 import 'eco_friendly_page.dart';
 import 'wastec_bank_screen.dart';
 import 'track_order_screen.dart';
@@ -154,12 +155,16 @@ class _HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SafeArea(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _HeroBanner(
+      child: Column(
+        children: [
+          const LocationHeader(),
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _HeroBanner(
               icon: Icons.eco,
               title: 'Be Eco-Friendly',
               subtitle: 'Turn your waste into wealth while saving the planet',
@@ -172,8 +177,11 @@ class _HomeTab extends StatelessWidget {
               subtitle: 'Zero Garbage to Landfill',
               onTap: onNavigateToWasteBank,
             ),
-          ],
-        ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
 }

@@ -2,6 +2,7 @@
 
 import '../config/theme.dart';
 import '../data/wastec_bank_data.dart';
+import '../widgets/location_header.dart';
 import 'eco_friendly_page.dart';
 
 class WastecBankScreen extends StatelessWidget {
@@ -19,7 +20,11 @@ class WastecBankScreen extends StatelessWidget {
     final bottomSafe = MediaQuery.of(context).padding.bottom;
     final bodyBottomPadding = bottomSafe + kBottomNavigationBarHeight + 12.0;
 
-    return SingleChildScrollView(
+    return Column(
+      children: [
+        const LocationHeader(),
+        Expanded(
+          child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.fromLTRB(16, 16, 16, bodyBottomPadding),
           child: Column(
@@ -58,10 +63,11 @@ class WastecBankScreen extends StatelessWidget {
             ],
           ),
         ),
-      );
-  }
-
-  Widget _buildSectionTitle(String title) => Text(
+          ),
+        ),
+      ],
+    );
+}  Widget _buildSectionTitle(String title) => Text(
       title,
       style: const TextStyle(
         fontSize: 20,

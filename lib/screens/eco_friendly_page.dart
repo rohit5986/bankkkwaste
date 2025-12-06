@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../config/theme.dart';
+import '../widgets/location_header.dart';
 import 'wastec_bank_screen.dart';
 
 /// Displays sustainable living ideas and eco product listings.
@@ -97,11 +98,15 @@ class EcoFriendlyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+        child: Column(
+          children: [
+            const LocationHeader(),
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
               _QuickAccessRow(
                 current: _QuickNavTarget.ecoFriendly,
                 onNavigateToWaste: onNavigateToWasteBank ?? () {},
@@ -128,8 +133,11 @@ class EcoFriendlyPage extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               _buildProductGrid(context),
-            ],
-          ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       );
 
