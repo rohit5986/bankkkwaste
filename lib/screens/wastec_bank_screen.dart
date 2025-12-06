@@ -2,7 +2,6 @@
 
 import '../config/theme.dart';
 import '../data/wastec_bank_data.dart';
-import '../widgets/wastec_bank_category_bar.dart';
 import 'eco_friendly_page.dart';
 
 class WastecBankScreen extends StatelessWidget {
@@ -24,7 +23,6 @@ class WastecBankScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const WastecBankCategoryBar(),
               const SizedBox(height: 18),
               _QuickAccessRow(
                 current: _QuickNavTarget.wasteBank,
