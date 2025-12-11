@@ -50,15 +50,6 @@ class WastecBankScreen extends StatelessWidget {
               const SizedBox(height: 12),
               _buildTrendingRates(),
 
-              const SizedBox(height: 24),
-
-              // Section B: Track Your Orders
-              _buildSectionTitle('Track Your Orders'),
-              _buildSectionSubtitle(
-                  'Monitor your ongoing and past scrap pickups.'),
-              const SizedBox(height: 12),
-              _buildOrdersList(),
-
               const SizedBox(height: 32),
             ],
           ),
@@ -144,59 +135,87 @@ class WastecBankScreen extends StatelessWidget {
       {'name': 'Iron', 'price': '₹17/kg', 'icon': Icons.build},
     ];
 
-    return SizedBox(
-      height: 150,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: rates.length,
-        itemBuilder: (context, index) {
-          final rate = rates[index];
-          return Container(
-            width: 120,
-            margin: const EdgeInsets.only(right: 12),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.08),
-                  blurRadius: 6,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  rate['icon']! as IconData,
-                  size: 48,
-                  color: WastecColors.primaryGreen,
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  rate['name']! as String,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+    return GridView.count(
+      crossAxisCount: 2,
+      crossAxisSpacing: 12,
+      mainAxisSpacing: 12,
+      childAspectRatio: 0.75,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      children: rates.map((rate) => Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () {},
+            borderRadius: BorderRadius.circular(18),
+            child: Ink(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(color: WastecColors.primaryGreen.withOpacity(0.25)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.08),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  rate['price']! as String,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
-                    color: WastecColors.primaryGreen,
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 120,
+                    decoration: BoxDecoration(
+                      color: WastecColors.lightGreen,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(18),
+                        topRight: Radius.circular(18),
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Icon(
+                      rate['icon'] as IconData,
+                      color: WastecColors.primaryGreen,
+                      size: 48,
+                    ),
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              rate['name'] as String,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.black87,
+                                height: 1.2,
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            rate['price'] as String,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: WastecColors.primaryGreen,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          );
-        },
-      ),
+          ),
+        )).toList(),
     );
   }
 
