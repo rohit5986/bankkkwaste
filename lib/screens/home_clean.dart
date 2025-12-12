@@ -90,11 +90,15 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         },
         type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.eco), label: 'Eco-Friendly'),
-          BottomNavigationBarItem(icon: Icon(Icons.local_shipping_outlined), label: 'Track Order'),
-          BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
+        items: [
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.arrow_back),
+            activeIcon: const Icon(Icons.home_filled),
+            label: 'Home',
+          ),
+          const BottomNavigationBarItem(icon: Icon(Icons.eco), label: 'Eco-Friendly'),
+          const BottomNavigationBarItem(icon: Icon(Icons.local_shipping_outlined), label: 'Track Order'),
+          const BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
         ],
       );
     }
@@ -117,11 +121,15 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         },
         type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.recycling), label: 'Waste Bank'),
-          BottomNavigationBarItem(icon: Icon(Icons.local_shipping_outlined), label: 'Track Order'),
-          BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
+        items: [
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.arrow_back),
+            activeIcon: const Icon(Icons.home_filled),
+            label: 'Home',
+          ),
+          const BottomNavigationBarItem(icon: Icon(Icons.recycling), label: 'Waste Bank'),
+          const BottomNavigationBarItem(icon: Icon(Icons.local_shipping_outlined), label: 'Track Order'),
+          const BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
         ],
       );
     }
@@ -134,11 +142,15 @@ class _HomeScreenState extends State<HomeScreen> {
         setState(() => _currentIndex = i);
       },
       type: BottomNavigationBarType.fixed,
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.eco), label: 'Be Eco-Friendly'),
-        BottomNavigationBarItem(icon: Icon(Icons.recycling), label: 'Waste Bank'),
-        BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
+      items: [
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.arrow_back),
+          activeIcon: const Icon(Icons.home_filled),
+          label: 'Home',
+        ),
+        const BottomNavigationBarItem(icon: Icon(Icons.eco), label: 'Be Eco-Friendly'),
+        const BottomNavigationBarItem(icon: Icon(Icons.recycling), label: 'Waste Bank'),
+        const BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
       ],
     );
   }

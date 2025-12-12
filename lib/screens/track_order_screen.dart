@@ -92,9 +92,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                   const SizedBox(height: 20),
                   ElevatedButton.icon(
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (_) => const HomeScreen()),
-                      );
+                      Navigator.of(context).pop();
                     },
                     icon: const Icon(Icons.add_circle_outline),
                     label: const Text('Start New Pickup'),
@@ -446,8 +444,10 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
 
   Widget _buildBottomNavBar(BuildContext context) {
     // Waste Bank navbar: Home, Waste Bank, Track Order, Wallet
+    const currentIndex = 2; // Track Order is at index 2
+    
     return BottomNavigationBar(
-      currentIndex: 2, // Track Order is at index 2
+      currentIndex: currentIndex,
       selectedItemColor: WastecColors.primaryGreen,
       unselectedItemColor: WastecColors.mediumGray,
       onTap: (i) {
@@ -471,11 +471,15 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
         }
       },
       type: BottomNavigationBarType.fixed,
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
-        BottomNavigationBarItem(icon: Icon(Icons.recycling), label: 'Waste Bank'),
-        BottomNavigationBarItem(icon: Icon(Icons.local_shipping_outlined), label: 'Track Order'),
-        BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
+      items: [
+        // Home button with back arrow (since this is not home screen)
+        const BottomNavigationBarItem(
+          icon: Icon(Icons.arrow_back),
+          label: 'Home',
+        ),
+        const BottomNavigationBarItem(icon: Icon(Icons.recycling), label: 'Waste Bank'),
+        const BottomNavigationBarItem(icon: Icon(Icons.local_shipping_outlined), label: 'Track Order'),
+        const BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
       ],
     );
   }
