@@ -7,6 +7,7 @@ import '../widgets/location_header.dart';
 import 'eco_friendly_page.dart';
 import 'wastec_bank_screen.dart';
 import 'track_order_screen.dart';
+import 'track_order_eco_screen.dart';
 // feature screens removed from Home; kept in Wastec Bank screen
 
 /// Home screen with bottom navigation
@@ -83,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
           } else if (i == 1) {
             setState(() => _currentIndex = 1); // Eco-Friendly (stays on this tab)
           } else if (i == 2) {
-            Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TrackOrderScreen(source: TrackOrderSource.ecoFriendly)));
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TrackOrderEcoScreen()));
           } else if (i == 3) {
             setState(() => _currentIndex = 3); // Wallet
           }
@@ -110,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
           } else if (i == 1) {
             setState(() => _currentIndex = 2); // Waste Bank (stays on this tab)
           } else if (i == 2) {
-            Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TrackOrderScreen(source: TrackOrderSource.wasteBank)));
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TrackOrderScreen()));
           } else if (i == 3) {
             setState(() => _currentIndex = 3); // Wallet
           }
