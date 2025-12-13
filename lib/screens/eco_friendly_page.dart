@@ -103,7 +103,6 @@ class EcoFriendlyPage extends StatelessWidget {
             const LocationHeader(),
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -111,28 +110,35 @@ class EcoFriendlyPage extends StatelessWidget {
                 current: _QuickNavTarget.ecoFriendly,
                 onNavigateToWaste: onNavigateToWasteBank ?? () {},
               ),
-              const SizedBox(height: 20),
-              const Text(
-                'Sustainable Living',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.green,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Sustainable Living',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    _buildSustainableTips(context),
+                    const SizedBox(height: 20),
+                    const Text(
+                      'Eco Product Sales',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.green,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    _buildProductGrid(context),
+                  ],
                 ),
               ),
-              const SizedBox(height: 12),
-              _buildSustainableTips(context),
-              const SizedBox(height: 20),
-              const Text(
-                'Eco Product Sales',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.green,
-                ),
-              ),
-              const SizedBox(height: 12),
-              _buildProductGrid(context),
                   ],
                 ),
               ),
@@ -368,23 +374,27 @@ class _QuickAccessRow extends StatelessWidget {
   final VoidCallback onNavigateToWaste;
 
   @override
-  Widget build(BuildContext context) => Row(
-        children: [
-          _QuickNavPill(
-            label: 'Waste Bank',
-            icon: Icons.recycling,
-            isActive: current == _QuickNavTarget.wasteBank,
-            onTap:
-                current == _QuickNavTarget.wasteBank ? null : onNavigateToWaste,
-          ),
-          const SizedBox(width: 12),
-          _QuickNavPill(
-            label: 'Be Eco-Friendly',
-            icon: Icons.eco_outlined,
-            isActive: current == _QuickNavTarget.ecoFriendly,
-            onTap: null,
-          ),
-        ],
+  Widget build(BuildContext context) => Container(
+        color: WastecColors.lightGreen,
+        padding: const EdgeInsets.fromLTRB(12,10,12,0),
+        child: Row(
+          children: [
+            _QuickNavPill(
+              label: 'Waste Bank',
+              icon: Icons.recycling,
+              isActive: current == _QuickNavTarget.wasteBank,
+              onTap:
+                  current == _QuickNavTarget.wasteBank ? null : onNavigateToWaste,
+            ),
+            const SizedBox(width: 12),
+            _QuickNavPill(
+              label: 'Be Eco-Friendly',
+              icon: Icons.eco_outlined,
+              isActive: current == _QuickNavTarget.ecoFriendly,
+              onTap: null,
+            ),
+          ],
+        ),
       );
 }
 
@@ -404,26 +414,29 @@ class _QuickNavPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final backgroundColor = isActive
-        ? WastecColors.primaryGreen
+        ? WastecColors.white
         : WastecColors.lightGreen;
-    final foregroundColor = isActive ? Colors.white : WastecColors.primaryGreen;
+    final foregroundColor = isActive ? WastecColors.primaryGreen : WastecColors.primaryGreen;
 
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 160),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        padding: const EdgeInsets.fromLTRB(16,16,16,20),
         decoration: BoxDecoration(
           color: backgroundColor,
-          borderRadius: BorderRadius.circular(18),
-          boxShadow: [
+          borderRadius: const BorderRadius.vertical(
+          top: Radius.circular(18),
+          bottom: Radius.zero
+          ),
+          /* boxShadow: [
             if (isActive)
               BoxShadow(
                 color: WastecColors.primaryGreen.withOpacity(0.3),
                 blurRadius: 12,
                 offset: const Offset(0, 6),
               ),
-          ],
+          ], */
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
