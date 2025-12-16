@@ -55,6 +55,17 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   PreferredSizeWidget _buildAppBar() {
+    // For home (0), eco-friendly (1), and waste bank (2), show LocationHeader instead of title
+    if (_currentIndex <= 2) {
+      return AppBar(
+        elevation: 0,
+        backgroundColor: WastecColors.primaryGreen,
+        title: const LocationHeader(),
+        actions: const [ProfileWalletActions()],
+      );
+    }
+    
+    // For Wallet (3), show regular title
     final titles = ['Wastec Bank', 'Be Eco-Friendly', 'Waste Bank', 'Wallet'];
     return AppBar(
       elevation: 0,
@@ -170,7 +181,6 @@ class _HomeTab extends StatelessWidget {
   Widget build(BuildContext context) => SafeArea(
       child: Column(
         children: [
-          const LocationHeader(),
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(16),

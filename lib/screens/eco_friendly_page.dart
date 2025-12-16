@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../config/theme.dart';
 import '../widgets/location_header.dart';
+import '../widgets/quick_access_row.dart';
 import 'wastec_bank_screen.dart';
 
 /// Displays sustainable living ideas and eco product listings.
@@ -97,54 +98,52 @@ class EcoFriendlyPage extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) => SafeArea(
-        child: Column(
-          children: [
-            const LocationHeader(),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-              _QuickAccessRow(
-                current: _QuickNavTarget.ecoFriendly,
-                onNavigateToWaste: onNavigateToWasteBank ?? () {},
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Sustainable Living',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.green,
-                      ),
+  Widget build(BuildContext context) => Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  QuickAccessRow(
+                    current: QuickNavTarget.ecoFriendly,
+                    onNavigateToWasteBank: onNavigateToWasteBank ?? () {},
+                    onNavigateToEcoFriendly: null,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Sustainable Living',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        _buildSustainableTips(context),
+                        const SizedBox(height: 20),
+                        const Text(
+                          'Eco Product Sales',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        _buildProductGrid(context),
+                      ],
                     ),
-                    const SizedBox(height: 12),
-                    _buildSustainableTips(context),
-                    const SizedBox(height: 20),
-                    const Text(
-                      'Eco Product Sales',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.green,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    _buildProductGrid(context),
-                  ],
-                ),
-              ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       );
 
   Widget _buildSustainableTips(BuildContext context) => SizedBox(
@@ -362,101 +361,7 @@ class EcoFriendlyPage extends StatelessWidget {
   }
 }
 
-enum _QuickNavTarget { wasteBank, ecoFriendly }
 
-class _QuickAccessRow extends StatelessWidget {
-  const _QuickAccessRow({
-    required this.current,
-    required this.onNavigateToWaste,
-  });
-
-  final _QuickNavTarget current;
-  final VoidCallback onNavigateToWaste;
-
-  @override
-  Widget build(BuildContext context) => Container(
-        color: WastecColors.lightGreen,
-        padding: const EdgeInsets.fromLTRB(12,10,12,0),
-        child: Row(
-          children: [
-            _QuickNavPill(
-              label: 'Waste Bank',
-              icon: Icons.recycling,
-              isActive: current == _QuickNavTarget.wasteBank,
-              onTap:
-                  current == _QuickNavTarget.wasteBank ? null : onNavigateToWaste,
-            ),
-            const SizedBox(width: 12),
-            _QuickNavPill(
-              label: 'Be Eco-Friendly',
-              icon: Icons.eco_outlined,
-              isActive: current == _QuickNavTarget.ecoFriendly,
-              onTap: null,
-            ),
-          ],
-        ),
-      );
-}
-
-class _QuickNavPill extends StatelessWidget {
-  const _QuickNavPill({
-    required this.label,
-    required this.icon,
-    required this.isActive,
-    required this.onTap,
-  });
-
-  final String label;
-  final IconData icon;
-  final bool isActive;
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final backgroundColor = isActive
-        ? WastecColors.white
-        : WastecColors.lightGreen;
-    final foregroundColor = isActive ? WastecColors.primaryGreen : WastecColors.primaryGreen;
-
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 160),
-        padding: const EdgeInsets.fromLTRB(16,16,16,20),
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(18),
-          bottom: Radius.zero
-          ),
-          /* boxShadow: [
-            if (isActive)
-              BoxShadow(
-                color: WastecColors.primaryGreen.withOpacity(0.3),
-                blurRadius: 12,
-                offset: const Offset(0, 6),
-              ),
-          ], */
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, color: foregroundColor, size: 18),
-            const SizedBox(width: 8),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                color: foregroundColor,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 /// Basic placeholder to confirm navigation from product cards.
 class ProductDetailPage extends StatelessWidget {

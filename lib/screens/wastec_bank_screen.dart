@@ -3,6 +3,7 @@
 import '../config/theme.dart';
 import '../data/wastec_bank_data.dart';
 import '../widgets/location_header.dart';
+import '../widgets/quick_access_row.dart';
 import 'eco_friendly_page.dart';
 
 class WastecBankScreen extends StatelessWidget {
@@ -22,38 +23,42 @@ class WastecBankScreen extends StatelessWidget {
 
     return Column(
       children: [
-        const LocationHeader(),
         Expanded(
           child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(16, 16, 16, bodyBottomPadding),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _QuickAccessRow(
-                current: _QuickNavTarget.wasteBank,
-                onNavigateToEco: onNavigateToEcoFriendly ?? () {},
-              ),
-              const SizedBox(height: 20),
-              // Section A: Trending Rates
-              _buildSectionTitle('Trending Rates'),
-              _buildSectionSubtitle(
-                  'These rates are provided by Wastec Bank dealers in your area.'),
-              const SizedBox(height: 12),
-              if (topRate != null)
-                _buildHighlightCard(
-                  icon: Icons.insights_outlined,
-                  tint: const Color(0xFFFFF4DA),
-                  message:
-                      'Top rate today: ${topRate['name']} at ${topRate['price']} · Updated live from trusted dealers.',
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                QuickAccessRow(
+                  current: QuickNavTarget.wasteBank,
+                  onNavigateToWasteBank: null,
+                  onNavigateToEcoFriendly: onNavigateToEcoFriendly ?? () {},
                 ),
-              const SizedBox(height: 12),
-              _buildTrendingRates(),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(16, 20, 16, bodyBottomPadding),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Section A: Trending Rates
+                      _buildSectionTitle('Trending Rates'),
+                      _buildSectionSubtitle(
+                          'These rates are provided by Wastec Bank dealers in your area.'),
+                      const SizedBox(height: 12),
+                      if (topRate != null)
+                        _buildHighlightCard(
+                          icon: Icons.insights_outlined,
+                          tint: const Color(0xFFFFF4DA),
+                          message:
+                              'Top rate today: ${topRate['name']} at ${topRate['price']} · Updated live from trusted dealers.',
+                        ),
+                      const SizedBox(height: 12),
+                      _buildTrendingRates(),
 
-              const SizedBox(height: 32),
-            ],
-          ),
-        ),
+                      const SizedBox(height: 32),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -1060,90 +1065,4 @@ class _DeliveryProgress extends StatelessWidget {
   }
 }
 
-enum _QuickNavTarget { wasteBank, ecoFriendly }
 
-class _QuickAccessRow extends StatelessWidget {
-  const _QuickAccessRow({
-    required this.current,
-    required this.onNavigateToEco,
-  });
-
-  final _QuickNavTarget current;
-  final VoidCallback onNavigateToEco;
-
-  @override
-  Widget build(BuildContext context) => Row(
-        children: [
-          _QuickNavPill(
-            label: 'Waste Bank',
-            icon: Icons.recycling,
-            isActive: current == _QuickNavTarget.wasteBank,
-            onTap: null,
-          ),
-          const SizedBox(width: 12),
-          _QuickNavPill(
-            label: 'Be Eco-Friendly',
-            icon: Icons.eco_outlined,
-            isActive: current == _QuickNavTarget.ecoFriendly,
-            onTap: current == _QuickNavTarget.ecoFriendly ? null : onNavigateToEco,
-          ),
-        ],
-      );
-}
-
-class _QuickNavPill extends StatelessWidget {
-  const _QuickNavPill({
-    required this.label,
-    required this.icon,
-    required this.isActive,
-    required this.onTap,
-  });
-
-  final String label;
-  final IconData icon;
-  final bool isActive;
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final backgroundColor = isActive
-        ? WastecColors.primaryGreen
-        : WastecColors.lightGreen;
-    final foregroundColor = isActive ? Colors.white : WastecColors.primaryGreen;
-
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 160),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(18),
-          boxShadow: [
-            if (isActive)
-              BoxShadow(
-                color: WastecColors.primaryGreen.withOpacity(0.3),
-                blurRadius: 12,
-                offset: const Offset(0, 6),
-              ),
-          ],
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, color: foregroundColor, size: 18),
-            const SizedBox(width: 8),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                color: foregroundColor,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

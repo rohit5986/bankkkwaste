@@ -70,16 +70,8 @@ class _LocationHeaderState extends State<LocationHeader> {
 
   @override
   Widget build(BuildContext context) => Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        color: WastecColors.primaryGreen,
       ),
       child: Row(
         children: [
@@ -87,12 +79,12 @@ class _LocationHeaderState extends State<LocationHeader> {
           Container(
             padding: const EdgeInsets.all(6),
             decoration: BoxDecoration(
-              color: WastecColors.primaryGreen.withOpacity(0.1),
+              color: Colors.white.withOpacity(0.2),
               borderRadius: BorderRadius.circular(8),
             ),
             child: const Icon(
               Icons.bolt,
-              color: WastecColors.primaryGreen,
+              color: Colors.white,
               size: 20,
             ),
           ),
@@ -112,14 +104,14 @@ class _LocationHeaderState extends State<LocationHeader> {
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.white,
                         ),
                       ),
                       const SizedBox(width: 4),
                       const Icon(
                         Icons.keyboard_arrow_down,
                         size: 20,
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                     ],
                   ),
@@ -130,35 +122,20 @@ class _LocationHeaderState extends State<LocationHeader> {
                           height: 12,
                           child: LinearProgressIndicator(
                             backgroundColor: Colors.transparent,
-                            valueColor: AlwaysStoppedAnimation<Color>(WastecColors.primaryGreen),
+                            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                           ),
                         )
                       : Text(
                           _selectedAddress,
                           style: TextStyle(
                             fontSize: 13,
-                            color: Colors.grey.shade700,
+                            color: Colors.white.withOpacity(0.9),
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                 ],
               ),
-            ),
-          ),
-
-          // Profile icon
-          Container(
-            width: 36,
-            height: 36,
-            decoration: BoxDecoration(
-              color: Colors.grey.shade200,
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.person,
-              size: 20,
-              color: Colors.grey,
             ),
           ),
         ],
