@@ -12,14 +12,22 @@ import 'track_order_eco_screen.dart';
 
 /// Home screen with bottom navigation
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key, this.initialIndex = 0}) : super(key: key);
+
+  final int initialIndex;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;
+  late int _currentIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.initialIndex;
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -95,7 +103,12 @@ class _HomeScreenState extends State<HomeScreen> {
           } else if (i == 1) {
             setState(() => _currentIndex = 1); // Eco-Friendly (stays on this tab)
           } else if (i == 2) {
-            Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TrackOrderEcoScreen()));
+            Navigator.of(context).push(
+              PageRouteBuilder(
+                pageBuilder: (_, __, ___) => const TrackOrderEcoScreen(),
+                transitionDuration: Duration.zero,
+              ),
+            );
           } else if (i == 3) {
             setState(() => _currentIndex = 3); // Wallet
           }
@@ -126,7 +139,12 @@ class _HomeScreenState extends State<HomeScreen> {
           } else if (i == 1) {
             setState(() => _currentIndex = 2); // Waste Bank (stays on this tab)
           } else if (i == 2) {
-            Navigator.of(context).push(MaterialPageRoute(builder: (_) => const TrackOrderScreen()));
+            Navigator.of(context).push(
+              PageRouteBuilder(
+                pageBuilder: (_, __, ___) => const TrackOrderScreen(),
+                transitionDuration: Duration.zero,
+              ),
+            );
           } else if (i == 3) {
             setState(() => _currentIndex = 3); // Wallet
           }

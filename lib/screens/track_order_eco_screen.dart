@@ -646,7 +646,10 @@ class TrackOrderEcoScreen extends StatelessWidget {
         if (i == 0) {
           // Navigate to Home Screen
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const HomeScreen()),
+            PageRouteBuilder(
+              pageBuilder: (_, __, ___) => const HomeScreen(),
+              transitionDuration: Duration.zero,
+            ),
           );
         } else if (i == 1) {
           // Navigate back to Eco-Friendly
@@ -654,8 +657,13 @@ class TrackOrderEcoScreen extends StatelessWidget {
         } else if (i == 2) {
           // Stay on Track Order
         } else if (i == 3) {
-          // Navigate to Wallet - pop back to Eco-Friendly first
-          Navigator.of(context).pop();
+          // Navigate to Home Screen with Wallet tab (index 3)
+          Navigator.of(context).pushReplacement(
+            PageRouteBuilder(
+              pageBuilder: (_, __, ___) => const HomeScreen(initialIndex: 3),
+              transitionDuration: Duration.zero,
+            ),
+          );
         }
       },
       type: BottomNavigationBarType.fixed,

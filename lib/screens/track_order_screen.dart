@@ -157,6 +157,46 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
     );
   }
 
+  Widget _buildBottomNavBar(BuildContext context) {
+    // Waste Bank navbar: Home, Waste Bank, Track Order, Wallet
+    return BottomNavigationBar(
+      currentIndex: 2, // Track Order is at index 2
+      selectedItemColor: WastecColors.primaryGreen,
+      unselectedItemColor: WastecColors.mediumGray,
+      onTap: (i) {
+        if (i == 0) {
+          // Navigate to Home Screen
+          Navigator.of(context).pushReplacement(
+            PageRouteBuilder(
+              pageBuilder: (_, __, ___) => const HomeScreen(),
+              transitionDuration: Duration.zero,
+            ),
+          );
+        } else if (i == 1) {
+          // Navigate back to Waste Bank
+          Navigator.of(context).pop();
+        } else if (i == 2) {
+          // Stay on Track Order
+        } else if (i == 3) {
+          // Navigate to Home Screen with Wallet tab (index 3)
+          Navigator.of(context).pushReplacement(
+            PageRouteBuilder(
+              pageBuilder: (_, __, ___) => const HomeScreen(initialIndex: 3),
+              transitionDuration: Duration.zero,
+            ),
+          );
+        }
+      },
+      type: BottomNavigationBarType.fixed,
+      items: [
+        const BottomNavigationBarItem(icon: Icon(Icons.arrow_back), label: 'Home'),
+        const BottomNavigationBarItem(icon: Icon(Icons.recycling), label: 'Waste Bank'),
+        const BottomNavigationBarItem(icon: Icon(Icons.local_shipping_outlined), label: 'Track Order'),
+        const BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
+      ],
+    );
+  }
+
   Widget _buildSimplifiedOrderCard(BuildContext context, Map<String, dynamic> order) {
     final status = order['status'] as String;
     final orderId = order['id'] as String;
@@ -439,48 +479,6 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildBottomNavBar(BuildContext context) {
-    // Waste Bank navbar: Home, Waste Bank, Track Order, Wallet
-    const currentIndex = 2; // Track Order is at index 2
-    
-    return BottomNavigationBar(
-      currentIndex: currentIndex,
-      selectedItemColor: WastecColors.primaryGreen,
-      unselectedItemColor: WastecColors.mediumGray,
-      onTap: (i) {
-        if (i == 0) {
-          // Navigate to Home Screen
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const HomeScreen()),
-          );
-        } else if (i == 1) {
-          // Navigate back to Waste Bank
-          Navigator.of(context).pop();
-        } else if (i == 2) {
-          // Stay on Track Order
-        } else if (i == 3) {
-          // Navigate to Wallet Screen
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const Scaffold(
-              body: WalletTab(),
-            )),
-          );
-        }
-      },
-      type: BottomNavigationBarType.fixed,
-      items: [
-        // Home button with back arrow (since this is not home screen)
-        const BottomNavigationBarItem(
-          icon: Icon(Icons.arrow_back),
-          label: 'Home',
-        ),
-        const BottomNavigationBarItem(icon: Icon(Icons.recycling), label: 'Waste Bank'),
-        const BottomNavigationBarItem(icon: Icon(Icons.local_shipping_outlined), label: 'Track Order'),
-        const BottomNavigationBarItem(icon: Icon(Icons.account_balance_wallet_outlined), label: 'Wallet'),
-      ],
     );
   }
 }
