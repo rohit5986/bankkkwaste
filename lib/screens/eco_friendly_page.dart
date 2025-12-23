@@ -40,12 +40,14 @@ class EcoFriendlyPage extends StatelessWidget {
       tag: 'Organic',
       price: 150,
       icon: Icons.grass,
+      imagePath: 'assets/images/compressed-coco-peat.png',
     ),
     const _EcoProduct(
       name: 'Coir Compost Mix',
       tag: 'Compost',
       price: 180,
       icon: Icons.eco,
+      imagePath: 'assets/images/coco-coir-in-hands-scaled.jpg',
     ),
     const _EcoProduct(
       name: 'Biodegradable Garbage Bags',
@@ -185,6 +187,7 @@ class EcoFriendlyPage extends StatelessWidget {
                       width: 52,
                       height: 52,
                       decoration: BoxDecoration(
+                        
                         color: Colors.green,
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [
@@ -271,11 +274,24 @@ class EcoFriendlyPage extends StatelessWidget {
                       ),
                     ),
                     alignment: Alignment.center,
-                    child: Icon(
-                      product.icon,
-                      color: Colors.green.shade700,
-                      size: 48,
-                    ),
+                    child: product.imagePath != null
+                        ? ClipRRect(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(18),
+                              topRight: Radius.circular(18),
+                            ),
+                            child: Image.asset(
+                              product.imagePath!,
+                              height: 120,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                        : Icon(
+                            product.icon,
+                            color: Colors.green.shade700,
+                            size: 48,
+                          ),
                   ),
                   Expanded(
                     child: Padding(
@@ -292,6 +308,7 @@ class EcoFriendlyPage extends StatelessWidget {
                               color: Colors.green.shade100,
                               borderRadius: BorderRadius.circular(8),
                             ),
+                            
                             child: Text(
                               product.tag,
                               style: TextStyle(
@@ -299,7 +316,9 @@ class EcoFriendlyPage extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 color: Colors.green.shade800,
                               ),
+                            
                             ),
+                            
                           ),
                           const SizedBox(height: 8),
                           Expanded(
@@ -390,12 +409,20 @@ class ProductDetailPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18),
                   border: Border.all(color: Colors.green.withOpacity(0.2)),
                 ),
+                clipBehavior: Clip.antiAlias,
                 alignment: Alignment.center,
-                child: Icon(
-                  product.icon,
-                  size: 72,
-                  color: Colors.green.shade700,
-                ),
+                child: product.imagePath != null
+                    ? Image.asset(
+                        product.imagePath!,
+                        height: 200,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      )
+                    : Icon(
+                        product.icon,
+                        size: 72,
+                        color: Colors.green.shade700,
+                      ),
               ),
               const SizedBox(height: 20),
               Text(
@@ -461,10 +488,12 @@ class _EcoProduct {
     required this.tag,
     required this.price,
     required this.icon,
+    this.imagePath,
   });
 
   final String name;
   final String tag;
   final int price;
   final IconData icon;
+  final String? imagePath;
 }
