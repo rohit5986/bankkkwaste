@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../config/theme.dart';
-import '../widgets/location_header.dart';
 import '../widgets/quick_access_row.dart';
-import 'wastec_bank_screen.dart';
 
 /// Displays sustainable living ideas and eco product listings.
 class EcoFriendlyPage extends StatelessWidget {
@@ -54,48 +51,56 @@ class EcoFriendlyPage extends StatelessWidget {
       tag: 'Compostable',
       price: 120,
       icon: Icons.shopping_bag,
+      imagePath: 'assets/images/biodegrad-bag.jpg',
     ),
     const _EcoProduct(
       name: 'Edible Rice Plates (Pack of 10)',
       tag: 'Edible',
       price: 200,
       icon: Icons.restaurant,
+      imagePath: 'assets/images/edible-rice-plates.jpg',
     ),
     const _EcoProduct(
       name: 'Areca Leaf Bowls (Pack of 25)',
       tag: 'Compostable',
       price: 250,
       icon: Icons.rice_bowl,
+      imagePath: 'assets/images/eco-friendly-areca-leaf-bowl.jpeg',
     ),
     const _EcoProduct(
       name: 'Bamboo Toothbrush',
       tag: 'Reusable',
       price: 100,
       icon: Icons.brush,
+      imagePath: 'assets/images/bamboo-toothbrush.jpg',
     ),
     const _EcoProduct(
       name: 'Recycled Planters',
       tag: 'Recycled',
       price: 180,
       icon: Icons.local_florist,
+      imagePath: 'assets/images/recycled-planters.jpg',
     ),
     const _EcoProduct(
       name: 'Coir Pots (Pack of 5)',
       tag: 'Compostable',
       price: 220,
       icon: Icons.yard,
+      imagePath: 'assets/images/coir-pots.jpg',
     ),
     const _EcoProduct(
       name: 'Bio Enzyme Cleaner',
       tag: 'Natural',
       price: 190,
       icon: Icons.cleaning_services,
+      imagePath: 'assets/images/bio-enzyme-cleaner.jpg',
     ),
     const _EcoProduct(
       name: 'Cloth Shopping Bag',
       tag: 'Reusable',
       price: 130,
       icon: Icons.local_mall,
+      imagePath: 'assets/images/cloth-shopping-bag.jpg',
     ),
   ];
 

@@ -53,8 +53,7 @@ class TrackOrderEcoScreen extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+  Widget build(BuildContext context) => Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
         elevation: 0,
@@ -149,10 +148,8 @@ class TrackOrderEcoScreen extends StatelessWidget {
       ),
       bottomNavigationBar: _buildBottomNavBar(context),
     );
-  }
 
-  Widget _buildOrderCard(BuildContext context, Map<String, dynamic> order) {
-    return GestureDetector(
+  Widget _buildOrderCard(BuildContext context, Map<String, dynamic> order) => GestureDetector(
       onTap: () => _showOrderDetails(context, order),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -226,7 +223,6 @@ class TrackOrderEcoScreen extends StatelessWidget {
         ),
       ),
     );
-  }
 
   void _showOrderDetails(BuildContext context, Map<String, dynamic> order) {
     showModalBottomSheet(
@@ -365,9 +361,9 @@ class TrackOrderEcoScreen extends StatelessWidget {
                                     ),
                                   ),
                                   const SizedBox(height: 4),
-                                  Text(
+                                  const Text(
                                     '₹299',
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black87,
@@ -382,7 +378,7 @@ class TrackOrderEcoScreen extends StatelessWidget {
                       const SizedBox(height: 20),
 
                       // Delivery Status Timeline
-                      Text(
+                      const Text(
                         'Delivery Status',
                         style: TextStyle(
                           fontSize: 16,
@@ -413,7 +409,7 @@ class TrackOrderEcoScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 10),
-                            Text(
+                            const Text(
                               'Asha Nagar Ward 12, Pune - 411001',
                               style: TextStyle(
                                 fontSize: 14,
@@ -592,8 +588,7 @@ class TrackOrderEcoScreen extends StatelessWidget {
     required IconData icon,
     required String label,
     required String date,
-  }) {
-    return SizedBox(
+  }) => SizedBox(
       width: 70,
       child: Column(
         children: [
@@ -634,7 +629,6 @@ class TrackOrderEcoScreen extends StatelessWidget {
         ],
       ),
     );
-  }
 
   Widget _buildBottomNavBar(BuildContext context) {
     // Eco-Friendly navbar: Home, Eco-Friendly, Track Order, Wallet
@@ -665,7 +659,7 @@ class TrackOrderEcoScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
@@ -673,7 +667,7 @@ class TrackOrderEcoScreen extends StatelessWidget {
                         color: WastecColors.mediumGray,
                         size: 24,
                       ),
-                      const SizedBox(height: 4),
+                      SizedBox(height: 4),
                       Text(
                         'Home',
                         style: TextStyle(
@@ -695,7 +689,7 @@ class TrackOrderEcoScreen extends StatelessWidget {
               Expanded(
                 child: InkWell(
                   onTap: () => Navigator.of(context).pop(),
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
@@ -703,7 +697,7 @@ class TrackOrderEcoScreen extends StatelessWidget {
                         color: WastecColors.mediumGray,
                         size: 24,
                       ),
-                      const SizedBox(height: 4),
+                      SizedBox(height: 4),
                       Text(
                         'Eco-Friendly',
                         style: TextStyle(
@@ -719,7 +713,7 @@ class TrackOrderEcoScreen extends StatelessWidget {
               Expanded(
                 child: InkWell(
                   onTap: () {},
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
@@ -727,7 +721,7 @@ class TrackOrderEcoScreen extends StatelessWidget {
                         color: WastecColors.primaryGreen,
                         size: 24,
                       ),
-                      const SizedBox(height: 4),
+                      SizedBox(height: 4),
                       Text(
                         'Track Order',
                         style: TextStyle(
@@ -750,7 +744,7 @@ class TrackOrderEcoScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
@@ -758,7 +752,7 @@ class TrackOrderEcoScreen extends StatelessWidget {
                         color: WastecColors.mediumGray,
                         size: 24,
                       ),
-                      const SizedBox(height: 4),
+                      SizedBox(height: 4),
                       Text(
                         'Wallet',
                         style: TextStyle(

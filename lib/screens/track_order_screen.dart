@@ -186,7 +186,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                       ),
                     );
                   },
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
@@ -194,7 +194,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                         color: WastecColors.mediumGray,
                         size: 24,
                       ),
-                      const SizedBox(height: 4),
+                      SizedBox(height: 4),
                       Text(
                         'Home',
                         style: TextStyle(
@@ -216,7 +216,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
               Expanded(
                 child: InkWell(
                   onTap: () => Navigator.of(context).pop(),
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
@@ -224,7 +224,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                         color: WastecColors.mediumGray,
                         size: 24,
                       ),
-                      const SizedBox(height: 4),
+                      SizedBox(height: 4),
                       Text(
                         'Waste Bank',
                         style: TextStyle(
@@ -240,7 +240,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
               Expanded(
                 child: InkWell(
                   onTap: () {},
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
@@ -248,7 +248,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                         color: WastecColors.primaryGreen,
                         size: 24,
                       ),
-                      const SizedBox(height: 4),
+                      SizedBox(height: 4),
                       Text(
                         'Track Order',
                         style: TextStyle(
@@ -271,7 +271,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                       ),
                     );
                   },
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
@@ -279,7 +279,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                         color: WastecColors.mediumGray,
                         size: 24,
                       ),
-                      const SizedBox(height: 4),
+                      SizedBox(height: 4),
                       Text(
                         'Wallet',
                         style: TextStyle(
@@ -309,8 +309,8 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
     // Determine icon based on order stage
     final isCompleted = stage >= 5;
     final iconData = isCompleted ? Icons.verified : Icons.local_shipping_outlined;
-    final iconBackground = isCompleted ? Color(0xFFD1F0EC) : Color(0xFFFFE8D6);
-    final iconColor = isCompleted ? Color(0xFF0B8C54) : Color(0xFFFF8C32);
+    final iconBackground = isCompleted ? const Color(0xFFD1F0EC) : const Color(0xFFFFE8D6);
+    final iconColor = isCompleted ? const Color(0xFF0B8C54) : const Color(0xFFFF8C32);
 
     return GestureDetector(
       onTap: () => _showOrderDetails(context, order),
@@ -449,7 +449,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
             ),
             const SizedBox(height: 12),
             // View Details Hint
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
@@ -460,7 +460,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(width: 6),
+                SizedBox(width: 6),
                 Icon(
                   Icons.arrow_forward_ios,
                   size: 10,
@@ -497,8 +497,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
     );
   }
 
-  Widget _buildEmptyState(String title, String subtitle) {
-    return Center(
+  Widget _buildEmptyState(String title, String subtitle) => Center(
       child: Column(
         children: [
           const SizedBox(height: 40),
@@ -529,15 +528,13 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
         ],
       ),
     );
-  }
 
   Widget _buildTabButton({
     required String label,
     required IconData icon,
     required bool isActive,
     required VoidCallback onTap,
-  }) {
-    return GestureDetector(
+  }) => GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
@@ -581,5 +578,4 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
         ),
       ),
     );
-  }
 }

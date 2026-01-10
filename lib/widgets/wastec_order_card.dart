@@ -255,7 +255,7 @@ class _WastecOrderCardState extends State<WastecOrderCard> with SingleTickerProv
                                 children: [
                                   Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.update_rounded,
                                         size: 14,
                                         color: Colors.black45,
